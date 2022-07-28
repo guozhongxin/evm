@@ -11,7 +11,7 @@
     "test": "mocha -r ts-node/register tests/**/*.ts",
     "prepublishOnly": "npm run clean && npm run build:prod",
     "clean": "rimraf ./lib",
-    "build": "npm run build:hashes && webpack",
+    "build": "node --max-old-space-size=8192 node_modules/webpack/bin/webpack.js",
     "build:prod": "cross-env NODE_ENV=production npm run build",
     "build:hashes": "ts-node ./scripts/build.ts",
     "prettier:diff": "prettier --write --config ./.prettierrc --list-different 'src/**/*.ts'"
