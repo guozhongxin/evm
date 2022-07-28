@@ -25,7 +25,7 @@ typings/
 .yarn-integrity
 .env
 .next
-lib/
+# lib/
 
 # Webpack
 .awcache/

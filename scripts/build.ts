@@ -8,12 +8,22 @@ functions.sort((a, b) => a.localeCompare(b));
 events.sort((a, b) => a.localeCompare(b));
 
 const functionHashes: any = functions.reduce((map: any, functionName: any) => {
-    map[web3.utils.sha3(functionName).substring(2, 10)] = functionName;
+    const sig = web3.utils.sha3(functionName).substring(2, 10);
+    if (sig in map) {
+        map[sig] = map[sig] + '|' + functionName;
+    } else {
+        map[sig] = functionName;
+    }
     return map;
 }, {});
 
 const eventHashes: any = events.reduce((map: any, eventName: any) => {
-    map[web3.utils.sha3(eventName).substring(2)] = eventName;
+    const sig = web3.utils.sha3(eventName).substring(2);
+    if (sig in map) {
+        map[sig] = map[sig] + '|' + eventName;
+    } else {
+        map[sig] = eventName;
+    }
     return map;
 }, {});
 
